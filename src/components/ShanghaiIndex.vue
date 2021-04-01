@@ -1,6 +1,6 @@
 <template>
   <div class="ShanghaiIndex">
-      <div id="ShanghaiIndexEchart" style="width:2000px;height: 500px"></div>
+      <div id="ShanghaiIndexEchart" style="height: 500px;"></div>
   </div>
 </template>
 

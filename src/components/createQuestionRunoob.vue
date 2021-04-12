@@ -9,7 +9,7 @@
       style="width: 100%">
       <el-table-column type="expand">
         <template slot-scope="props">
-          <el-col :span="4" label-position="left" v-for="(val,ind) in props.row.answerList" inline class="demo-table-expand">
+          <el-col :span="4" label-position="left" v-for="(val,ind) in props.row.answerList" :key="ind" inline class="demo-table-expand">
             <el-radio v-model="props.row.questionCorrectAnswer" :disabled="(props.row.questionCorrectAnswer !== val.rank)? true:false" :label=val.rank style="width: 20%;display:inline-block;">{{ val.rank }}. {{val.answerContent}}</el-radio>
           </el-col>
         </template>
@@ -41,7 +41,7 @@
       <el-form-item label="问题题干" :label-width="formLabelWidth">
         <el-input v-model="question.questionName" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item :label=val.answerLabel v-for="(val,ind) in question.answerList" :label-width="formLabelWidth">
+      <el-form-item :label=val.answerLabel v-for="(val,ind) in question.answerList" :key="ind" :label-width="formLabelWidth">
         <el-input v-model="val.answerContent" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="正确答案" :label-width="formLabelWidth">

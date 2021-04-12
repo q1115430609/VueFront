@@ -2,14 +2,14 @@ import request from '@/util/request'
 
 export function getQuestionList(){
   return request({
-    url:'/question/getQuestionList',
+    url:'api/question/getQuestionList',
     method:'post'
   })
 }
 
 export function addQuestion(param){
   return request({
-    url:'/question/addQuestion',
+    url:'api/question/addQuestion',
     method:'post',
     data:param
   })

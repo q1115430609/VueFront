@@ -1,10 +1,10 @@
 <template>
   <div class="questionRunoob">
     <el-row>
-      <el-col :span="24" v-for="(question,ind) in questionList" style="margin: 20px 0;">
+      <el-col :span="24" v-for="(question,ind) in questionList" :key="ind" style="margin: 20px 0;">
         <el-col style="text-align: left;margin-left: 20%;">{{question.questionNo}}. {{question.questionName}}</el-col>
         <el-row>
-          <el-radio-group v-model="question.returnAnswer" v-for="(answer,i) in question.answerList">
+          <el-radio-group v-model="question.returnAnswer" v-for="(answer,i) in question.answerList" :key="i">
             <el-radio :label="answer.rank" style="margin: 10px 20px;" @change="checkAnswer(ind,i)">{{answer.rank}}. {{answer.answerContent}}</el-radio>
           </el-radio-group>
         </el-row>

@@ -1,12 +1,10 @@
 <template>
   <div class="ShanghaiIndex">
-      <div id="ShanghaiIndexEchart" style="height: 500px;"></div>
+      <div id="ShanghaiIndexEchart"></div>
   </div>
 </template>
 
 <script>
-import * as echarts from "echarts";
-
 export default {
   name: "ShanghaiIndex",
   data(){
@@ -20,7 +18,7 @@ export default {
         },
         title: {
           left: 'center',
-          text: '上证指数',
+          text: '上证指数模拟（敬请期待）',
         },
         toolbox: {
           feature: {
@@ -61,7 +59,7 @@ export default {
   },
   mounted() {
     var chartDom = document.getElementById('ShanghaiIndexEchart');
-    var myChart = echarts.init(chartDom);
+    var myChart = this.$echarts.init(chartDom);
 
     var base = +new Date(1988, 9, 3);
     var oneDay = 24 * 3600 * 1000;
@@ -82,5 +80,7 @@ export default {
 </script>
 
 <style scoped>
-
+#ShanghaiIndexEchart{
+  height: 500px;
+}
 </style>

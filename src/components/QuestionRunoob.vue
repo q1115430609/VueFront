@@ -46,7 +46,6 @@ export default {
     checkAnswer(ind,i){
       let riList = ['好厉害啊！',"厉害了！","666哇！"];
       let misList = ['真菜啊！',"太菜了吧！","菜中菜！"];
-      console.log("dasads",this.questionList[ind].returnAnswer,this.questionList[ind].questionCorrectAnswer)
       if(this.questionList[ind].returnAnswer == this.questionList[ind].questionCorrectAnswer){
         this.questionList[ind].rightOrMis = riList[parseInt(Math.random() * 3)];
       }else{

@@ -10,3 +10,12 @@ export function uploadFile(params){
     }
   })
 }
+
+export function getFileList(params){
+  return request({
+    url:'api/fileStorage/queryFileList',
+    method:'post',
+    data:params
+  })
+}
+

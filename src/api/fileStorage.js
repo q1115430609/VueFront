@@ -19,3 +19,10 @@ export function getFileList(params){
   })
 }
 
+export function downloadFile(params){
+  return request({
+    url:'api/fileStorage/downloadFile',
+    method:'post',
+    data:params
+  })
+}

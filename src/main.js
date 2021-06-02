@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/index.js'
+import '../static/css/index.css' /*引入公共样式*/
 
 import Element from 'element-ui'
 import * as echarts from "echarts";
@@ -16,6 +18,7 @@ Vue.prototype.$echarts = echarts
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

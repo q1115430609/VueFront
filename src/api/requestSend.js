@@ -23,3 +23,12 @@ export function loginIn(params){
     data:params
   })
 }
+
+
+export function initLift(params){
+  return request({
+    url:'api/electricalLift/initLift',
+    method:'post',
+    data:params
+  })
+}

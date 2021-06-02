@@ -1,6 +1,6 @@
 <template>
 <div>
-  <el-row style="text-align: right">
+  <el-row class="textRight20">
     <el-button type="primary" @click="dialogFormVisible = true">创建问题</el-button>
   </el-row>
   <el-row>
@@ -33,6 +33,24 @@
         label="正确选项"
         prop="questionCorrectAnswer">
       </el-table-column>
+      <el-table-column
+        label="操作"
+        width="120">
+        <template slot-scope="scope">
+          <el-button
+            @click.native.prevent="editRow(scope.$index, questionList)"
+            type="text"
+            size="small">
+            修改
+          </el-button>
+          <el-button
+            @click.native.prevent="deleteRow(scope.$index, questionList)"
+            type="text"
+            size="small">
+            删除
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </el-row>
 <!--  新建问题弹框-->
@@ -63,7 +81,7 @@
 </template>
 
 <script>
-import {getQuestionList,addQuestion} from '@/api/createQuestionRunoo'
+import {getQuestionList,addQuestion,editQuestion,deleteQuestion} from '@/api/createQuestionRunoo'
 export default {
 name: "createQuestionRunoob",
   data(){
@@ -118,6 +136,22 @@ name: "createQuestionRunoob",
         });
         this.queryQuestionList();
       })
+    },
+    deleteRow(index,data){
+      let params = {
+        questionId:data[index].questionId
+      }
+      deleteQuestion(params).then((data)=>{
+        this.$message(data.data.data);
+        this.queryQuestionList();
+      })
+    },
+    editRow(index,data){
+      let params = this.question;
+      this.$message("未开发完成，敬请期待");
+      // editQuestion(params).then((data)=>{
+      //
+      // })
     }
   }
 }

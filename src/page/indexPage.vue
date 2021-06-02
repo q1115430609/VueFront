@@ -4,11 +4,12 @@
       <el-menu-item index="1" @click="questRoute(1)">主页</el-menu-item>
       <el-submenu index="2">
         <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1" @click="questRoute(2)">小菜答题</el-menu-item>
-        <el-menu-item index="2-1" @click="questRoute(3)">小菜录题</el-menu-item>
+        <el-menu-item index="2-1" @click="questRoute(2)">答题</el-menu-item>
+        <el-menu-item index="2-1" @click="questRoute(3)">录题</el-menu-item>
         <el-menu-item index="2-2" @click="questRoute(4)">存钱罐</el-menu-item>
         <el-menu-item index="2-3" @click="questRoute('exerciseRegister')">运动打卡</el-menu-item>
         <el-menu-item index="2-5" @click="questRoute('fileStorage')">文件存储</el-menu-item>
+        <el-menu-item index="2-6" @click="questRoute('electricalLift')">模拟电梯</el-menu-item>
 <!--        <el-submenu index="2-4">-->
 <!--          <template slot="title">选项4</template>-->
 <!--          <el-menu-item index="2-4-1">选项1</el-menu-item>-->
@@ -39,6 +40,9 @@
     </div>
     <div v-if="routeIndex == 'fileStorage'" class="midCenterChannel">
       <FileStorage></FileStorage>
+    </div>
+    <div v-if="routeIndex == 'electricalLift'" class="midCenterChannel">
+      <ElectricalLift></ElectricalLift>
     </div>
     <!-- 登录注册面板 -->
     <el-dialog
@@ -83,6 +87,7 @@ import GetAndSaveMoney from "@/components/GetAndSaveMoney.vue";
 import ShanghaiIndex from '@/components/ShanghaiIndex.vue'
 import FileStorage from '@/components/FileStorage.vue'
 import ExerciseRegister from '@/components/ExerciseRegister.vue'
+import ElectricalLift from '@/components/ElectricalLift.vue'
 
 export default {
   name: 'indexPage',
@@ -92,7 +97,8 @@ export default {
     GetAndSaveMoney,
     ShanghaiIndex,
     FileStorage,
-    ExerciseRegister
+    ExerciseRegister,
+    ElectricalLift
   },
   data() {
     let confimPassword = (rule, value, callback) => {
@@ -147,10 +153,12 @@ export default {
     }
   },
   mounted() {
+    console.log("asdads",this.$store)
     let loginMeassage = JSON.parse(sessionStorage.getItem("loginMessage"))
     console.log(sessionStorage)
     if(loginMeassage != null){
       this.loginUserName = loginMeassage.userName;
+      this.$store.state.loginVal = loginMeassage;
     }
   },
   methods: {
@@ -185,7 +193,15 @@ export default {
           that.loginUserName = data.data.userName;
           this.$message("登录成功！");
           that.loginPannelVisible = false;
+          this.$store.state.loginVal = {
+            userId:data.data.userId,
+            passWord:data.data.passWord,
+            userName:data.data.userName,
+            email:data.data.email,
+            phone:data.data.phone
+          }
           sessionStorage.setItem("loginMessage",JSON.stringify(data.data));
+          console.log("dsad",this.$store)
         }else{
           this.$message("用户名或密码不正确！");
         }
